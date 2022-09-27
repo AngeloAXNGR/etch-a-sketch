@@ -1,7 +1,7 @@
 let canvasDimension = 16;
 let canvas = document.querySelector('.canvas');
 
-// Buttons
+// Interactables
 let normalBtn = document.querySelector('#black-button');
 normalBtn.addEventListener('click', () =>{
   draw(cells);
@@ -17,6 +17,10 @@ clearBtn.addEventListener('click', () =>{
   clearCanvas(cells);
 })
 
+let dimensionRange = document.querySelector('#dimension-range');
+dimensionRange.addEventListener("mouseup", () =>{
+  createGrid(canvas, dimensionRange.value);
+})
 // Functions
 function createGrid(canvas, dimension){
   canvas.innerHTML = "";
