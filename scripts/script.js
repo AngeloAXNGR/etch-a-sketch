@@ -1,6 +1,8 @@
 let canvasDimension = 16;
 let canvas = document.querySelector('.canvas');
 
+let gridValue = document.querySelector('#grid-size');
+
 // Interactables
 let normalBtn = document.querySelector('#black-button');
 normalBtn.addEventListener('click', () =>{
@@ -35,7 +37,15 @@ clearBtn.addEventListener('click', () =>{
 let dimensionRange = document.querySelector('#dimension-range');
 dimensionRange.addEventListener("mouseup", () =>{
   createGrid(canvas, dimensionRange.value);
+  rainbowBtn.classList.remove('active');
+  normalBtn.classList.remove('active');
+  eraserBtn.classList.remove('active');
 })
+
+dimensionRange.addEventListener("input", () =>{
+  gridValue.textContent = `${dimensionRange.value} x ${dimensionRange.value}`;
+})
+
 // Functions
 function createGrid(canvas, dimension){
   canvas.innerHTML = "";

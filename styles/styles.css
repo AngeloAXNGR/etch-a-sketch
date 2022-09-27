@@ -66,5 +66,16 @@ button.active{
 
 #cells{
   flex: 1 1 auto;
-  /* border:solid 1px; */
+  border:solid 1px;
+}
+
+
+.dimensions{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#grid-size{
+  text-align: center;
 }
