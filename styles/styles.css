@@ -66,7 +66,7 @@ button.active{
 
 #cells{
   flex: 1 1 auto;
-  border:solid 1px;
+  /* border:solid 1px; */
 }
 
 
@@ -78,4 +78,9 @@ button.active{
 
 #grid-size{
   text-align: center;
+}
+
+
+.color{
+  background-color: black;
 }

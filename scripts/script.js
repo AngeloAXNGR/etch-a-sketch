@@ -9,7 +9,8 @@ normalBtn.addEventListener('click', () =>{
   normalBtn.classList.add('active');
   rainbowBtn.classList.remove('active');
   eraserBtn.classList.remove('active');
-  draw(cells, "black");
+  // draw(cells, "black");
+  toggleSingleColorDraw(cells);
 });
 
 let rainbowBtn = document.querySelector('#rainbow-button');
@@ -17,7 +18,7 @@ rainbowBtn.addEventListener('click', () =>{
   rainbowBtn.classList.add('active');
   normalBtn.classList.remove('active');
   eraserBtn.classList.remove('active');
-  drawRainbow(cells);
+  toggleRainbowDraw(cells);
 });
 
 let eraserBtn = document.querySelector('#eraser-button');
@@ -25,7 +26,7 @@ eraserBtn.addEventListener('click', () => {
   eraserBtn.classList.add('active');
   rainbowBtn.classList.remove('active');
   normalBtn.classList.remove('active');
-  draw(cells, "white");
+  toggleEraser(cells);
 });
 
 
@@ -54,33 +55,90 @@ function createGrid(canvas, dimension){
   for(let i = 0; i <= dimension - 1; i++){
     let rows = document.createElement('div')
     rows.setAttribute('id', 'rows');
+    rows.ondragstart = false;
 
     // For each rows, create cells
     for (let j = 0; j <= dimension - 1; j++)  {
       let cells = document.createElement('div');
       cells.setAttribute('id', 'cells');
+      cells.ondragstart = false;
       rows.appendChild(cells);
+      
     }
     canvas.appendChild(rows);
   }
 }
 
-function draw(cells, color){
+
+function toggleSingleColorDraw(cells){
+  canvas.onmousedown = enableDrawState;
   let boxes = Array.from(cells);
   boxes.forEach((box) =>{
-    box.addEventListener('mouseover', () => {
-      box.setAttribute('style', `background-color:${color}`);
-    });
+    box.onmouseenter = drawSingleColor;
   });
+
+  canvas.onmouseup = disableDrawState;
 }
 
-function drawRainbow(cells){
+function toggleRainbowDraw(cells){
+  canvas.onmousedown = enableDrawState;
   let boxes = Array.from(cells);
   boxes.forEach((box) =>{
-    box.addEventListener('mouseover', () => {
-      box.setAttribute('style', `background-color:${getRandomColor()}`);
-    });
+    box.onmouseenter = drawMultipleColor;
   });
+
+  canvas.onmouseup = disableDrawState;
+}
+
+function toggleEraser(cells){
+  canvas.onmousedown = enableDrawState;
+  let boxes = Array.from(cells);
+  boxes.forEach((box) =>{
+    box.onmouseenter = enableEraser;
+  });
+
+  canvas.onmouseup = disableDrawState;
+}
+
+// Functions for checking draw state 
+//(Done as a replacement for mouseover event when drawing in the canvas)
+
+drawState = false;
+function enableDrawState(e){
+  console.log('Enabled');
+  e.preventDefault();
+  drawState = true;
+}
+
+function disableDrawState(e){
+  drawState = false;
+}
+
+function drawSingleColor(e){
+  if(drawState === false){
+    return;
+  }
+
+   console.log('toggle: ', e.target);
+  e.target.setAttribute('style', "background:black");
+}
+
+function drawMultipleColor(e){
+  if(drawState === false){
+    return;
+  }
+
+   console.log('toggle: ', e.target);
+  e.target.setAttribute('style', `background:${getRandomColor()}`);
+}
+
+function enableEraser(e){
+  if(drawState === false){
+    return;
+  }
+
+   console.log('toggle: ', e.target);
+  e.target.setAttribute('style', "background:white");
 }
 
 function clearCanvas(cells){
