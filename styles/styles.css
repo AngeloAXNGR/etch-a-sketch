@@ -10,6 +10,7 @@ body{
   display:flex;
   justify-content: center;
   align-items: center;
+  gap: 32px;
 }
 
 .canvas{
@@ -19,12 +20,16 @@ body{
   border:solid 1px;
   display:flex;
   flex-direction: column;
+  border-radius: 5px;
 }
 
 .tools{
   background: gray;
   height:100px;
   width:100px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
 #rows{
