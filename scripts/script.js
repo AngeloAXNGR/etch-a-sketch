@@ -4,13 +4,19 @@ let canvas = document.querySelector('.canvas');
 // Interactables
 let normalBtn = document.querySelector('#black-button');
 normalBtn.addEventListener('click', () =>{
-  draw(cells);
+  draw(cells, "black");
 });
 
 let rainbowBtn = document.querySelector('#rainbow-button');
 rainbowBtn.addEventListener('click', () =>{
   drawRainbow(cells);
 });
+
+let eraserBtn = document.querySelector('#eraser-button');
+eraserBtn.addEventListener('click', () => {
+  draw(cells, "white");
+});
+
 
 let clearBtn = document.querySelector('#clear-button');
 clearBtn.addEventListener('click', () =>{
@@ -40,11 +46,11 @@ function createGrid(canvas, dimension){
   }
 }
 
-function draw(cells){
+function draw(cells, color){
   let boxes = Array.from(cells);
   boxes.forEach((box) =>{
     box.addEventListener('mouseover', () => {
-      box.setAttribute('style', 'background-color:black');
+      box.setAttribute('style', `background-color:${color}`);
     });
   });
 }
