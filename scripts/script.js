@@ -1,7 +1,21 @@
 let canvasDimension = 16;
 let canvas = document.querySelector('.canvas');
 
+// Buttons
+let normalBtn = document.querySelector('#black-button');
+normalBtn.addEventListener('click', () =>{
+  draw(cells);
+});
 
+let rainbowBtn = document.querySelector('#rainbow-button');
+rainbowBtn.addEventListener('click', () =>{
+  drawRainbow(cells);
+});
+
+let clearBtn = document.querySelector('#clear-button');
+clearBtn.addEventListener('click', () =>{
+  clearCanvas(cells);
+})
 
 // Functions
 function createGrid(canvas, dimension){
@@ -40,6 +54,14 @@ function drawRainbow(cells){
   });
 }
 
+function clearCanvas(cells){
+  let boxes = Array.from(cells);
+  boxes.forEach((box) =>{
+    box.setAttribute('style', 'background-color:white');
+  });
+}
+
+// Helper Function for drawRainbow
 function getRandomColor(){
   let maxVal = 0xFFFFFF;
   let randomNumber = Math.random() * maxVal;
@@ -50,6 +72,4 @@ function getRandomColor(){
 
 
 createGrid(canvas, canvasDimension);
-draw(cells);
-drawRainbow(cells);
 
