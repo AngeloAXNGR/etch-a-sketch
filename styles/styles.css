@@ -1,0 +1,39 @@
+body{
+  margin:0;
+  padding: 200px 0;
+}
+
+
+.container{
+  background:#EEEEEE;
+  margin: 0 auto;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas{
+  height:600px;
+  width:600px;
+  background:white;
+  border:solid 1px;
+  display:flex;
+  flex-direction: column;
+}
+
+.tools{
+  background: gray;
+  height:100px;
+  width:100px;
+}
+
+#rows{
+  flex: 1 1 auto;
+  display:flex;
+  flex-direction: row;
+}
+
+#cells{
+  flex: 1 1 auto;
+  border:solid 1px;
+}
