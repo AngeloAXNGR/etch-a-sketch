@@ -4,16 +4,25 @@ let canvas = document.querySelector('.canvas');
 // Interactables
 let normalBtn = document.querySelector('#black-button');
 normalBtn.addEventListener('click', () =>{
+  normalBtn.classList.add('active');
+  rainbowBtn.classList.remove('active');
+  eraserBtn.classList.remove('active');
   draw(cells, "black");
 });
 
 let rainbowBtn = document.querySelector('#rainbow-button');
 rainbowBtn.addEventListener('click', () =>{
+  rainbowBtn.classList.add('active');
+  normalBtn.classList.remove('active');
+  eraserBtn.classList.remove('active');
   drawRainbow(cells);
 });
 
 let eraserBtn = document.querySelector('#eraser-button');
 eraserBtn.addEventListener('click', () => {
+  eraserBtn.classList.add('active');
+  rainbowBtn.classList.remove('active');
+  normalBtn.classList.remove('active');
   draw(cells, "white");
 });
 
