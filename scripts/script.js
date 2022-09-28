@@ -1,4 +1,4 @@
-let canvasDimension = 16;
+let canvasDimension = 32;
 let canvas = document.querySelector('.canvas');
 
 let gridValue = document.querySelector('#grid-size');
